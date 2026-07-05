@@ -156,10 +156,8 @@ func TestMatchChild(t *testing.T) {
 	innerG.AddChild(rect)
 	outerG.AddChild(innerG)
 	// rect is now a grandchild of outerG, not a direct child
-	if query.Match(rect, sel) {
-		// This should still match because rect IS a direct child of innerG
-		// The selector g > rect matches any rect that is a direct child of any g
-		// So this is actually correct behavior
+	if !query.Match(rect, sel) {
+		t.Error("g > rect should match rect as direct child of innerG")
 	}
 }
 

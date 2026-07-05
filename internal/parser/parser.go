@@ -81,7 +81,8 @@ func (p *Parser) Parse(r io.Reader) (*models.SVGDocument, error) {
 				if len(stack) > 0 {
 					stack[len(stack)-1].AddChild(el)
 				} else if tag == "title" || tag == "desc" {
-					// title and desc text content is handled by char data in the main loop
+					// Self-closing title/desc elements — text content is handled by char data
+					_ = el // element parsed but not attached to tree
 				}
 			} else {
 				stack = append(stack, el)

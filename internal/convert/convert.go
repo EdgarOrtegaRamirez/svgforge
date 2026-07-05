@@ -112,19 +112,19 @@ func renderSVG(doc *models.SVGDocument) string {
 		fmt.Fprintf(&sb, " width=\"%s\"", doc.Width)
 	}
 	if doc.Height != "" {
-		sb.WriteString(fmt.Sprintf(" height=\"%s\"", doc.Height))
+		fmt.Fprintf(&sb, " height=\"%s\"", doc.Height)
 	}
 	if doc.ViewBox != nil {
-		sb.WriteString(fmt.Sprintf(" viewBox=\"%.4g %.4g %.4g %.4g\"",
-			doc.ViewBox.MinX, doc.ViewBox.MinY, doc.ViewBox.Width, doc.ViewBox.Height))
+		fmt.Fprintf(&sb, " viewBox=\"%.4g %.4g %.4g %.4g\"",
+			doc.ViewBox.MinX, doc.ViewBox.MinY, doc.ViewBox.Width, doc.ViewBox.Height)
 	}
 	sb.WriteString(">\n")
 
 	if doc.Title != "" {
-		sb.WriteString(fmt.Sprintf("  <title>%s</title>\n", doc.Title))
+		fmt.Fprintf(&sb, "  <title>%s</title>\n", doc.Title)
 	}
 	if doc.Desc != "" {
-		sb.WriteString(fmt.Sprintf("  <desc>%s</desc>\n", doc.Desc))
+		fmt.Fprintf(&sb, "  <desc>%s</desc>\n", doc.Desc)
 	}
 
 	// Render defs

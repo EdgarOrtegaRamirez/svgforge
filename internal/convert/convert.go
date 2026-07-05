@@ -101,15 +101,15 @@ func renderSVG(doc *models.SVGDocument) string {
 	var sb strings.Builder
 	sb.WriteString("<svg")
 	if doc.Xmlns != "" {
-		sb.WriteString(fmt.Sprintf(" xmlns=\"%s\"", doc.Xmlns))
+		fmt.Fprintf(&sb, " xmlns=\"%s\"", doc.Xmlns)
 	} else {
 		sb.WriteString(" xmlns=\"http://www.w3.org/2000/svg\"")
 	}
 	if doc.Version != "" {
-		sb.WriteString(fmt.Sprintf(" version=\"%s\"", doc.Version))
+		fmt.Fprintf(&sb, " version=\"%s\"", doc.Version)
 	}
 	if doc.Width != "" {
-		sb.WriteString(fmt.Sprintf(" width=\"%s\"", doc.Width))
+		fmt.Fprintf(&sb, " width=\"%s\"", doc.Width)
 	}
 	if doc.Height != "" {
 		sb.WriteString(fmt.Sprintf(" height=\"%s\"", doc.Height))

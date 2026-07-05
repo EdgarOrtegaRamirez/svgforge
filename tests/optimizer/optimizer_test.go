@@ -96,8 +96,9 @@ func TestOptimizeSimplifyPath(t *testing.T) {
 
 	d := doc.Elements[0].Attribute("d")
 	// Should simplify whitespace
-	if d == "M 0.00 0.00 L 10.00 10.00 Z" {
-		// Path may or may not be simplified, that's OK
+	expected := "M 0.00 0.00 L 10.00 10.00 Z"
+	if d != expected && d != "M0.00 0.00L10.00 10.00Z" {
+		t.Logf("path data may or may not be simplified: %q", d)
 	}
 }
 

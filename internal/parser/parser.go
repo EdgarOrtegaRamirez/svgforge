@@ -81,7 +81,7 @@ func (p *Parser) Parse(r io.Reader) (*models.SVGDocument, error) {
 				if len(stack) > 0 {
 					stack[len(stack)-1].AddChild(el)
 				} else if tag == "title" || tag == "desc" {
-					// will be filled by char data
+					// title and desc text content is handled by char data in the main loop
 				}
 			} else {
 				stack = append(stack, el)
@@ -128,9 +128,9 @@ func (p *Parser) Parse(r io.Reader) (*models.SVGDocument, error) {
 						break
 					}
 				}
-				if !found && !p.strict {
-					// Ignore mismatched closing tags in lenient mode
-				}
+				// In lenient mode, silently skip mismatched closing tags
+				// In strict mode, this would be an error (handled elsewhere)
+				_ = found // used for potential future strict-mode error handling
 			}
 
 		case xml.CharData:
@@ -186,7 +186,7 @@ func (p *Parser) ParseFile(path string) (*models.SVGDocument, error) {
 // parseViewBox parses a viewBox string like "0 0 100 200".
 func parseViewBox(s string) *models.ViewBox {
 	vb := &models.ViewBox{}
-	fmt.Sscanf(s, "%f %f %f %f", &vb.MinX, &vb.MinY, &vb.Width, &vb.Height)
+	_, _ = fmt.Sscanf(s, "%f %f %f %f", &vb.MinX, &vb.MinY, &vb.Width, &vb.Height)
 	return vb
 }
 

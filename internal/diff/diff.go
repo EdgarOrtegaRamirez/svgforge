@@ -98,12 +98,7 @@ func compareRootAttrs(doc1, doc2 *models.SVGDocument, result *DiffResult) {
 }
 
 func compareElements(elems1, elems2 []*models.Element, basePath string, result *DiffResult) {
-	// Build maps by index (simple approach)
-	maxLen := len(elems1)
-	if len(elems2) > maxLen {
-		maxLen = len(elems2)
-	}
-
+	// Match elements by tag+id and then by position
 	used1 := make([]bool, len(elems1))
 	used2 := make([]bool, len(elems2))
 

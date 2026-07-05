@@ -160,7 +160,7 @@ func renderElement(el *models.Element) string {
 
 	// Write attributes
 	for k, v := range el.Attributes {
-		sb.WriteString(fmt.Sprintf(" %s=\"%s\"", k, escapeAttr(v)))
+		fmt.Fprintf(&sb, " %s=\"%s\"", k, escapeAttr(v))
 	}
 
 	if el.IsContainer() || len(el.Children) > 0 || el.Text != "" {
@@ -171,7 +171,7 @@ func renderElement(el *models.Element) string {
 		for _, child := range el.Children {
 			sb.WriteString(renderElement(child))
 		}
-		sb.WriteString(fmt.Sprintf("</%s>", el.Tag))
+		fmt.Fprintf(&sb, "</%s>", el.Tag)
 	} else {
 		sb.WriteString(" />")
 	}
@@ -184,31 +184,31 @@ func renderFormatted(doc *models.SVGDocument, indent int) string {
 	var sb strings.Builder
 	sb.WriteString(prefix + "<svg")
 	if doc.Xmlns != "" {
-		sb.WriteString(fmt.Sprintf(" xmlns=\"%s\"", doc.Xmlns))
+		fmt.Fprintf(&sb, " xmlns=\"%s\"", doc.Xmlns)
 	} else {
 		sb.WriteString(" xmlns=\"http://www.w3.org/2000/svg\"")
 	}
 	if doc.Width != "" {
-		sb.WriteString(fmt.Sprintf("\n" + prefix + "  width=\"%s\"", doc.Width))
+		fmt.Fprintf(&sb, "\n%s  width=\"%s\"", prefix, doc.Width)
 	}
 	if doc.Height != "" {
-		sb.WriteString(fmt.Sprintf("\n" + prefix + "  height=\"%s\"", doc.Height))
+		fmt.Fprintf(&sb, "\n%s  height=\"%s\"", prefix, doc.Height)
 	}
 	if doc.ViewBox != nil {
-		sb.WriteString(fmt.Sprintf("\n"+prefix+"  viewBox=\"%.4g %.4g %.4g %.4g\"",
-			doc.ViewBox.MinX, doc.ViewBox.MinY, doc.ViewBox.Width, doc.ViewBox.Height))
+		fmt.Fprintf(&sb, "\n%s  viewBox=\"%.4g %.4g %.4g %.4g\"",
+			prefix, doc.ViewBox.MinX, doc.ViewBox.MinY, doc.ViewBox.Width, doc.ViewBox.Height)
 	}
 	sb.WriteString(">\n")
 
 	if doc.Title != "" {
-		sb.WriteString(fmt.Sprintf("%s  <title>%s</title>\n", prefix, doc.Title))
+		fmt.Fprintf(&sb, "%s  <title>%s</title>\n", prefix, doc.Title)
 	}
 
 	for _, el := range doc.Elements {
 		sb.WriteString(renderFormattedElement(el, indent+1))
 	}
 
-	sb.WriteString(fmt.Sprintf("%s</svg>\n", prefix))
+	fmt.Fprintf(&sb, "%s</svg>\n", prefix)
 	return sb.String()
 }
 
@@ -222,7 +222,7 @@ func renderFormattedElement(el *models.Element, indent int) string {
 	sb.WriteString(prefix + "<" + el.Tag)
 
 	for k, v := range el.Attributes {
-		sb.WriteString(fmt.Sprintf(" %s=\"%s\"", k, escapeAttr(v)))
+		fmt.Fprintf(&sb, " %s=\"%s\"", k, escapeAttr(v))
 	}
 
 	if el.IsContainer() || len(el.Children) > 0 || el.Text != "" {
@@ -234,7 +234,7 @@ func renderFormattedElement(el *models.Element, indent int) string {
 		for _, child := range el.Children {
 			sb.WriteString(renderFormattedElement(child, indent+1))
 		}
-		sb.WriteString(fmt.Sprintf("%s</%s>\n", prefix, el.Tag))
+		fmt.Fprintf(&sb, "%s</%s>\n", prefix, el.Tag)
 	} else {
 		sb.WriteString(" />\n")
 	}

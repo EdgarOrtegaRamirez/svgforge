@@ -155,29 +155,29 @@ func FormatText(s *Stats) string {
 	var sb strings.Builder
 	sb.WriteString("SVG Statistics\n")
 	sb.WriteString("==============\n\n")
-	sb.WriteString(fmt.Sprintf("Dimensions: %s × %s\n", s.Width, s.Height))
+	fmt.Fprintf(&sb, "Dimensions: %s × %s\n", s.Width, s.Height)
 	if s.ViewBox != "" {
-		sb.WriteString(fmt.Sprintf("ViewBox:    %s\n", s.ViewBox))
+		fmt.Fprintf(&sb, "ViewBox:    %s\n", s.ViewBox)
 	}
-	sb.WriteString(fmt.Sprintf("\nElements:   %d\n", s.TotalElements))
-	sb.WriteString(fmt.Sprintf("  Shapes:   %d\n", s.ShapeElements))
-	sb.WriteString(fmt.Sprintf("  Containers: %d\n", s.ContainerElements))
-	sb.WriteString(fmt.Sprintf("  Text:     %d\n", s.TextElements))
-	sb.WriteString(fmt.Sprintf("  Use:      %d\n", s.UseElements))
-	sb.WriteString(fmt.Sprintf("  Defs:     %d\n", s.DefElements))
-	sb.WriteString(fmt.Sprintf("  Max depth: %d\n", s.MaxDepth))
+	fmt.Fprintf(&sb, "\nElements:   %d\n", s.TotalElements)
+	fmt.Fprintf(&sb, "  Shapes:   %d\n", s.ShapeElements)
+	fmt.Fprintf(&sb, "  Containers: %d\n", s.ContainerElements)
+	fmt.Fprintf(&sb, "  Text:     %d\n", s.TextElements)
+	fmt.Fprintf(&sb, "  Use:      %d\n", s.UseElements)
+	fmt.Fprintf(&sb, "  Defs:     %d\n", s.DefElements)
+	fmt.Fprintf(&sb, "  Max depth: %d\n", s.MaxDepth)
 
 	if len(s.TagCounts) > 0 {
 		sb.WriteString("\nTag distribution:\n")
 		for tag, count := range s.TagCounts {
-			sb.WriteString(fmt.Sprintf("  %-20s %d\n", tag, count))
+			fmt.Fprintf(&sb, "  %-20s %d\n", tag, count)
 		}
 	}
 
 	if len(s.ClassCounts) > 0 {
 		sb.WriteString("\nClasses:\n")
 		for class, count := range s.ClassCounts {
-			sb.WriteString(fmt.Sprintf("  %-20s %d\n", class, count))
+			fmt.Fprintf(&sb, "  %-20s %d\n", class, count)
 		}
 	}
 
@@ -213,7 +213,7 @@ func FormatText(s *Stats) string {
 		sb.WriteString("\n")
 	}
 
-	sb.WriteString(fmt.Sprintf("\nEstimated size: %d bytes\n", s.EstimatedSize))
+	fmt.Fprintf(&sb, "\nEstimated size: %d bytes\n", s.EstimatedSize)
 
 	return sb.String()
 }

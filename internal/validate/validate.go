@@ -271,11 +271,11 @@ func FormatText(result *ValidationResult) string {
 		case Info:
 			sev = "INFO "
 		}
-		sb.WriteString(fmt.Sprintf("[%s] %s: %s (%s)\n", sev, issue.Path, issue.Message, issue.Rule))
+		fmt.Fprintf(&sb, "[%s] %s: %s (%s)\n", sev, issue.Path, issue.Message, issue.Rule)
 	}
 
-	sb.WriteString(fmt.Sprintf("\nSummary: %d errors, %d warnings, %d info\n",
-		result.Summary.Errors, result.Summary.Warnings, result.Summary.Infos))
+	fmt.Fprintf(&sb, "\nSummary: %d errors, %d warnings, %d info\n",
+		result.Summary.Errors, result.Summary.Warnings, result.Summary.Infos)
 
 	if result.Summary.Errors == 0 {
 		sb.WriteString("\n✓ SVG is valid\n")

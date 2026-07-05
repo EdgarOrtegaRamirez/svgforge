@@ -219,18 +219,18 @@ func FormatText(result *DiffResult) string {
 	for _, entry := range result.Entries {
 		switch entry.Type {
 		case ChangeAdded:
-			sb.WriteString(fmt.Sprintf("+ %s\n", entry.Path))
+			fmt.Fprintf(&sb, "+ %s\n", entry.Path)
 		case ChangeRemoved:
-			sb.WriteString(fmt.Sprintf("- %s\n", entry.Path))
+			fmt.Fprintf(&sb, "- %s\n", entry.Path)
 		case ChangeModified:
-			sb.WriteString(fmt.Sprintf("~ %s: %q -> %q\n", entry.Path, entry.OldValue, entry.NewValue))
+			fmt.Fprintf(&sb, "~ %s: %q -> %q\n", entry.Path, entry.OldValue, entry.NewValue)
 		case ChangeUnchanged:
-			sb.WriteString(fmt.Sprintf("  %s\n", entry.Path))
+			fmt.Fprintf(&sb, "  %s\n", entry.Path)
 		}
 	}
 
-	sb.WriteString(fmt.Sprintf("\nSummary: %d added, %d removed, %d modified, %d unchanged\n",
-		result.Summary.Added, result.Summary.Removed, result.Summary.Modified, result.Summary.Unchanged))
+	fmt.Fprintf(&sb, "\nSummary: %d added, %d removed, %d modified, %d unchanged\n",
+		result.Summary.Added, result.Summary.Removed, result.Summary.Modified, result.Summary.Unchanged)
 
 	return sb.String()
 }

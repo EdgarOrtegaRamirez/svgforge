@@ -15,12 +15,12 @@ func TestOptimizeRemoveRedundant(t *testing.T) {
 			{
 				Tag: "rect",
 				Attributes: map[string]string{
-					"width":           "100",
-					"height":          "50",
-					"opacity":         "1",
-					"fill":            "black",
-					"stroke-width":    "1",
-					"visibility":      "visible",
+					"width":        "100",
+					"height":       "50",
+					"opacity":      "1",
+					"fill":         "black",
+					"stroke-width": "1",
+					"visibility":   "visible",
 				},
 			},
 		},
@@ -58,9 +58,9 @@ func TestOptimizeRemoveEditorAttrs(t *testing.T) {
 			{
 				Tag: "rect",
 				Attributes: map[string]string{
-					"width":       "100",
-					"height":      "50",
-					"data-name":   "my-rect",
+					"width":            "100",
+					"height":           "50",
+					"data-name":        "my-rect",
 					"inkscape:version": "1.3",
 				},
 			},
@@ -106,7 +106,7 @@ func TestOptimizeRemoveEmptyGroups(t *testing.T) {
 	doc := &models.SVGDocument{
 		Elements: []*models.Element{
 			{
-				Tag: "g",
+				Tag:        "g",
 				Attributes: map[string]string{"id": "empty"},
 				Children:   []*models.Element{},
 			},

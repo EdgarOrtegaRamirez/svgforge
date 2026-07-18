@@ -141,11 +141,11 @@ func TestAnalyzeMaxDepth(t *testing.T) {
 
 func TestFormatText(t *testing.T) {
 	s := &stats.Stats{
-		Width:        "100",
-		Height:       "100",
+		Width:         "100",
+		Height:        "100",
 		TotalElements: 5,
 		ShapeElements: 3,
-		TagCounts:    map[string]int{"rect": 2, "circle": 1},
+		TagCounts:     map[string]int{"rect": 2, "circle": 1},
 	}
 	text := stats.FormatText(s)
 	if text == "" {

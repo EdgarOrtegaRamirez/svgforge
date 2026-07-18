@@ -42,7 +42,7 @@ type Element struct {
 
 // StyleRule represents a CSS style rule.
 type StyleRule struct {
-	Selector string
+	Selector   string
 	Properties map[string]string
 }
 
@@ -243,16 +243,16 @@ func (e *Element) String() string {
 
 // ElementStats holds statistics about an SVG document.
 type ElementStats struct {
-	TotalElements  int
-	ShapeElements  int
+	TotalElements     int
+	ShapeElements     int
 	ContainerElements int
-	TextElements   int
-	UseElements    int
-	DefElements    int
-	MaxDepth       int
-	TagCounts      map[string]int
-	ClassCounts    map[string]int
-	IDCounts       map[string]int
+	TextElements      int
+	UseElements       int
+	DefElements       int
+	MaxDepth          int
+	TagCounts         map[string]int
+	ClassCounts       map[string]int
+	IDCounts          map[string]int
 }
 
 // parseFloat is a helper that parses a float from string, returning 0 on error.

@@ -27,8 +27,8 @@ type Issue struct {
 
 // ValidationResult holds all validation issues.
 type ValidationResult struct {
-	Issues   []Issue
-	Summary  ValidationSummary
+	Issues  []Issue
+	Summary ValidationSummary
 }
 
 // ValidationSummary provides counts of issues by severity.

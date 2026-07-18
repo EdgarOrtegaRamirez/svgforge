@@ -29,15 +29,15 @@ type DiffEntry struct {
 
 // DiffResult holds the result of comparing two SVG documents.
 type DiffResult struct {
-	Entries  []DiffEntry
-	Summary  DiffSummary
+	Entries []DiffEntry
+	Summary DiffSummary
 }
 
 // DiffSummary provides a summary of changes.
 type DiffSummary struct {
-	Added    int
-	Removed  int
-	Modified int
+	Added     int
+	Removed   int
+	Modified  int
 	Unchanged int
 }
 

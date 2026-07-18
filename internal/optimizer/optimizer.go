@@ -107,17 +107,17 @@ func removeRedundantAttributes(el *models.Element) {
 
 	// Remove default values
 	defaults := map[string]string{
-		"opacity":     "1",
-		"fill-opacity": "1",
-		"stroke-opacity": "1",
-		"stroke-width": "1",
+		"opacity":          "1",
+		"fill-opacity":     "1",
+		"stroke-opacity":   "1",
+		"stroke-width":     "1",
 		"stroke-dasharray": "none",
-		"stroke-linecap":  "butt",
-		"stroke-linejoin": "miter",
-		"fill":           "black",
-		"visibility":     "visible",
-		"display":        "inline",
-		"overflow":       "hidden",
+		"stroke-linecap":   "butt",
+		"stroke-linejoin":  "miter",
+		"fill":             "black",
+		"visibility":       "visible",
+		"display":          "inline",
+		"overflow":         "hidden",
 	}
 
 	for attr, defaultVal := range defaults {
@@ -197,7 +197,7 @@ func EstimateSize(doc *models.SVGDocument) int {
 func estimateElementSize(el *models.Element) int {
 	size := len(el.Tag) + 2 // <tag>
 	for k, v := range el.Attributes {
-		size += len(k) + len(v) + 3 // key="value" 
+		size += len(k) + len(v) + 3 // key="value"
 	}
 	size += len(el.Text)
 	for _, child := range el.Children {

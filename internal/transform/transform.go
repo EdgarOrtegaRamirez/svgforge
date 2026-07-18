@@ -76,12 +76,12 @@ func (t Transform) Inverse() Transform {
 		return Identity() // singular matrix
 	}
 	return Transform{
-		A:  t.D / det,
-		B:  -t.B / det,
-		C:  -t.C / det,
-		D:  t.A / det,
-		E:  (t.C*t.F - t.D*t.E) / det,
-		F:  (t.B*t.E - t.A*t.F) / det,
+		A: t.D / det,
+		B: -t.B / det,
+		C: -t.C / det,
+		D: t.A / det,
+		E: (t.C*t.F - t.D*t.E) / det,
+		F: (t.B*t.E - t.A*t.F) / det,
 	}
 }
 

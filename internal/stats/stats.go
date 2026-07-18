@@ -10,40 +10,40 @@ import (
 
 // Stats holds comprehensive SVG statistics.
 type Stats struct {
-	Width           string            `json:"width"`
-	Height          string            `json:"height"`
-	ViewBox         string            `json:"view_box,omitempty"`
-	TotalElements   int               `json:"total_elements"`
-	ShapeElements   int               `json:"shape_elements"`
-	ContainerElements int             `json:"container_elements"`
-	TextElements    int               `json:"text_elements"`
-	UseElements     int               `json:"use_elements"`
-	DefElements     int               `json:"def_elements"`
-	MaxDepth        int               `json:"max_depth"`
-	TagCounts       map[string]int    `json:"tag_counts"`
-	ClassCounts     map[string]int    `json:"class_counts"`
-	IDCounts        map[string]int    `json:"id_counts"`
-	AttrCounts      map[string]int    `json:"attr_counts"`
-	HasStyles       bool              `json:"has_styles"`
-	HasScripts      bool              `json:"has_scripts"`
-	HasAnimations   bool              `json:"has_animations"`
-	HasFilters      bool              `json:"has_filters"`
-	HasGradients    bool              `json:"has_gradients"`
-	HasPatterns     bool              `json:"has_patterns"`
-	HasMasks        bool              `json:"has_masks"`
-	HasClipPaths    bool              `json:"has_clip_paths"`
-	EstimatedSize   int               `json:"estimated_size"`
+	Width             string         `json:"width"`
+	Height            string         `json:"height"`
+	ViewBox           string         `json:"view_box,omitempty"`
+	TotalElements     int            `json:"total_elements"`
+	ShapeElements     int            `json:"shape_elements"`
+	ContainerElements int            `json:"container_elements"`
+	TextElements      int            `json:"text_elements"`
+	UseElements       int            `json:"use_elements"`
+	DefElements       int            `json:"def_elements"`
+	MaxDepth          int            `json:"max_depth"`
+	TagCounts         map[string]int `json:"tag_counts"`
+	ClassCounts       map[string]int `json:"class_counts"`
+	IDCounts          map[string]int `json:"id_counts"`
+	AttrCounts        map[string]int `json:"attr_counts"`
+	HasStyles         bool           `json:"has_styles"`
+	HasScripts        bool           `json:"has_scripts"`
+	HasAnimations     bool           `json:"has_animations"`
+	HasFilters        bool           `json:"has_filters"`
+	HasGradients      bool           `json:"has_gradients"`
+	HasPatterns       bool           `json:"has_patterns"`
+	HasMasks          bool           `json:"has_masks"`
+	HasClipPaths      bool           `json:"has_clip_paths"`
+	EstimatedSize     int            `json:"estimated_size"`
 }
 
 // Analyze computes statistics for an SVG document.
 func Analyze(doc *models.SVGDocument) *Stats {
 	s := &Stats{
-		Width:     doc.Width,
-		Height:    doc.Height,
-		TagCounts: make(map[string]int),
+		Width:       doc.Width,
+		Height:      doc.Height,
+		TagCounts:   make(map[string]int),
 		ClassCounts: make(map[string]int),
-		IDCounts:  make(map[string]int),
-		AttrCounts: make(map[string]int),
+		IDCounts:    make(map[string]int),
+		AttrCounts:  make(map[string]int),
 	}
 
 	if doc.ViewBox != nil {
